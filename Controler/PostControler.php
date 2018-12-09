@@ -40,9 +40,18 @@ class PostControler
 
 		return $newcomment;
 	}
-	/*public function texte_resume_brut($textresum, $nbreCar, $postId, $title, $content)
+
+	public function showPage($page)
 	{
-		$textresum = $this->postManager->texte_resume_brut();
-		return $textresum;
-	}*/
+		$nbrPosts = $this->postManager->getPostsCount();
+		$limit = 5;
+		$nbrPages = ceil($nbrPosts/$limit);
+
+		//$offset = ($page * $limit) - $limit;
+
+		$offset = ($page > 0 && $page <= $nbrPages) ? ($page - 1) * $limit : 0;
+		$posts = $this->postManager->getPostsByPage($limit, $offset);
+	        require_once('./View/HomeView.php');
+	}
+	
 }

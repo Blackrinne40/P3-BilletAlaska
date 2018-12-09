@@ -47,43 +47,24 @@ class PostManager extends Database
         $affectedLines = $newComment -> execute(array($postId, $author, $comment));
         return $affectedLines;
     }
-/*Ajout fonction pour résumer le texte
-    public function texte_resume_brut( $textresum, $nbreCar, $postId, $title, $content)
+
+    public function getPostsCount()
     {
-
-        $req->prepare('SELECT id, title, content FROM posts WHERE id = ?');
-        
-        $req->execute(array(
-            ':postId' => $postId,
-            ':title' => $title,
-            ':content' => $content
-        ));
-       
-        $dbPost = $req->fetch();
-        $textresum = new PostModel($dbPost);
-
-
-        $textresum = trim(strip_tags($textresum)); // suppression des balises HTML
-        if( is_numeric($nbreCar) )
-        {
-            $PointSuspension = '...'; // points de suspension (ou '' si vous n'en voulez pas)
-            // ---------------------
-            // COUPE DU TEXTE pour le RÉSUMÉ
-            // ajout d'un espace de fin au cas où le texte n'en contiendrait pas...
-            $textresum.= ' ';
-            $LongueurAvant = mb_strlen($textresum);
-            if( $LongueurAvant > $nbreCar ){
-                // pour ne pas couper un mot, on va à l'espace suivant
-                $textresum = mb_substr($textresum, 0, strpos($texte, '...', $nbreCar));
-                // On ajoute (ou pas) des points de suspension à la fin si le texte brut est plus long que $nbreCar
-                if( !empty($PointSuspension) ){
-                    $textresum .= $PointSuspension;
-                }
-            }
-            // ---------------------
-        }
-        // On renvoie le résumé du texte correctement formaté.
-        return $textresum;
+        $req = $this->db->prepare('SELECT COUNT(id) AS count FROM posts');
+        $req->execute(array());
+        $postCount = $req->fetch();
+        return $postCount['count']; 
     }
-    */
+
+    public function getPostsByPage($limit, $offset)
+    {
+        $req = $this->db->prepare('SELECT id, title, author, content, textresum, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY id DESC LIMIT ' .$limit.' OFFSET ' .$offset);
+        $req->execute(array());
+        $posts = array();
+       while ($dbPost = $req-> fetch()){
+        $post = new PostClass($dbPost);
+        $posts[] = $post;
+       }
+        return $posts;
+    }
 }

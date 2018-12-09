@@ -46,6 +46,15 @@
                     $commentController->saveComment($_POST['author'],$_POST['comment'], $_GET['id']);
                 }
                 break;
+            case 'showPage':
+                if(array_key_exists('page', $_GET) && isset($_GET['page']))
+                {
+                  if(ctype_digit($_GET['page']))
+                  {
+                    $postControler->showPage(intval($_GET['page']));
+                  }    
+                }
+                break;
 
         	default:
         		$postControler->getPosts();

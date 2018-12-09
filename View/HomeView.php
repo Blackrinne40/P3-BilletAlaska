@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<h1>Billet simple pour l'Alaska</h1>
+	<h1><a class="blogTitle" href="index.php?action=showPage&page=1">Billet simple pour l'Alaska</a></h1>
 
 	<h2>Derniers Chapitres</h2>
 		<?php foreach($posts as $post) {?>
@@ -17,5 +17,16 @@
 				<a href=<?= "index.php?action=post&id=". $post->getId() ?>> Lire la suite </a>
 			</div>
 		<?php } ?>
+	 
+		<?php if ($page > 1) { ?>
+        <div><a class="stylebutton" href= <?= "index.php?action=showPage&page=" .($page - 1) ?> > Page précédente</a></div>
+    	<?php } ?>
+   
+
+    
+	    <?php if ($page < $nbrPages) { ?>
+	        <div><a class="stylebutton" href= <?="index.php?action=showPage&page=" .($page + 1)?> > Page suivante</a></div>
+	    <?php } ?>
+ 	
 </body>
 </html>
