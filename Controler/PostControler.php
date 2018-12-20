@@ -17,18 +17,20 @@ class PostControler
 	public function getPosts()
 	{
 	    $posts = $this->postManager->getPosts();
-	    require ('./View/HomeView.php');
+	    require ('./View/Frontend/HomeView.php');
 	}
-	public function getPost($postId, $success= false)
+	public function getPost($postId, $success= false, $pageId)
 	{
         $post = $this->postManager->getPost($postId);
-        $comments = $this->commentManager->getCommentsByPost($postId);
-		require ('./View/PostView.php');
+        $comments = $this->commentManager->getCommentsByPost($postId, $pageId);
+        $commentsCount = ceil($this->commentManager->getCommentsCountByPost($postId)/3);
+        
+		require ('./View/Frontend/PostView.php');
 	}
 	public function postComment($postId,$author,$comment)
 	{
 		$post = $this->postManager->postComment();
-		require ('./View/PostView.php');
+		require ('./View/Frontend/PostView.php');
 	}
 
 	public function editComment($postId,$author,$comment)
@@ -51,7 +53,17 @@ class PostControler
 
 		$offset = ($page > 0 && $page <= $nbrPages) ? ($page - 1) * $limit : 0;
 		$posts = $this->postManager->getPostsByPage($limit, $offset);
-	        require_once('./View/HomeView.php');
+	        require_once('./View/Frontend/HomeView.php');
 	}
-	
+	//ADMIN
+	public function getPostsAdmin()
+	{
+	    $postsAdmin = $this->postManager->getPostsAdmin();
+	    require_once('./View/Backend/allposts.php');
+	}
+	/*public function goDashboard()
+	{
+	    $dashboard = $this->postManager->goDashboard();
+	    require ('./View/Backend/dashboard.php');
+	}*/
 }

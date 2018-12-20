@@ -18,11 +18,11 @@ class CommentController
 	{
 		$comment = $this->commentManager->getComment($commentId);
 
-		require('./View/editComment.php');
+		require('./View/Frontend/editComment.php');
     }
-    public function saveComment($author, $comment, $commentId)
+    public function saveComment($author,$comment, $commentId)
 	{
-		$this->commentManager->saveComment($author, $comment, $commentId);
+		$comment = $this->commentManager->saveComment($author,$comment, $commentId);
 		$comment = $this->commentManager->getComment($commentId);
 
 		header('Location: index.php?action=post&id='. $comment->getPost_id());
@@ -39,5 +39,17 @@ class CommentController
     	$success = $this->commentManager->reportComment($commentId);
     	$comment = $this->commentManager->getComment($commentId);
     	header('Location: index.php?action=post&id='. $comment->getPost_Id().'&success='.$success);
+    }
+    public function showPageComments($pageComment)
+    {
+        $nbrComments = $this->commentManager->getCommentsCount();
+        $limit = 3;
+        $nbrPagesComments = ceil($nbrComments/$limit);
+
+        //$offset = ($page * $limit) - $limit;
+
+        $offset = ($pageComment > 0 && $pageComment <= $nbrPagesComments) ? ($pageComment - 1) * $limit : 0;
+        $comments = $this->commentManager->getCommentsByPage($limit, $offset);
+            require_once('./View/Frontend/PostView.php');
     }
 }

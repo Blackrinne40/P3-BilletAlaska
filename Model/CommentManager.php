@@ -10,9 +10,9 @@ class CommentManager extends Database
         parent::__construct();
     }
 
-    public function getCommentsByPost($postId)
+    public function getCommentsByPost($postId, $pageId)
     {
-       $req = $this -> db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments WHERE post_id = :postId ORDER BY comment_date DESC LIMIT 0, 5');
+       $req = $this -> db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments WHERE post_id = :postId ORDER BY comment_date DESC LIMIT 3 OFFSET ' .$pageId*3);
        $req->execute(array(':postId' => $postId));
        $comments=array();
        while ($dbComment = $req->fetch()){
@@ -31,13 +31,12 @@ class CommentManager extends Database
         return $comment;
     }
 
-    public function saveComment($author,$comment, $reports, $commentId) {
-        $req = $this->db->prepare('UPDATE comments SET author = :author, comment = :comment, reports = :reports WHERE id = :commentId');
+    public function saveComment($author,$comment, $commentId) {
+        $req = $this->db->prepare('UPDATE comments SET author = :author, comment = :comment WHERE id = :commentId');
         $req->execute(array(
           ':commentId' => $commentId,
           ':author' => $author,
-          ':comment' => $comment,
-          ':reports' => $reports
+          ':comment' => $comment
         )); 
     }
     public function addComment($post_id, $author, $comment)
@@ -48,9 +47,7 @@ class CommentManager extends Database
         ':author' => $author,
         ':comment' => $comment
       ));
-      $req->fetch();
-      $newcomment = new CommentClass($req);
-      return $newcomment;
+
     }
 
     public function reportComment($commentId)
@@ -61,16 +58,35 @@ class CommentManager extends Database
       return true;
     }
 
-    /*function reportComment($commentId)
+    public function getCommentsCount()
     {
-        $reportcomment = $this->getComment($commentId);
+        $req = $this->db->prepare('SELECT COUNT(id) AS count FROM comments');
+        $req->execute(array());
+        $dbComment = $req->fetch();
 
-        $reportcomment = $this->setReports(1);
+        return $dbComment['count']; 
+    }
 
-        $reportcomment = $this->saveComment($comment);
-        $reportcomment = new CommentClass();
-        return $reportcomment;
+     public function getCommentsCountByPost($postId)
+    {
+        $req = $this->db->prepare('SELECT COUNT(id) AS count FROM comments WHERE post_id = ?');
+        $req->execute(array($postId));
+        $commentCount = $req->fetch();
 
-    }*/
+        return $commentCount['count']; 
+    }
+
+    public function getCommentsByPage($limit, $offset)
+    {
+        $req = $this->db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments ORDER BY post_id DESC LIMIT ' .$limit.' OFFSET ' .$offset);
+        $req->execute(array());
+        $comments = array();
+       while ($dbComment = $req-> fetch()){
+        $comment = new PostClass($dbComment);
+        $comments[] = $comment;
+       }
+        return $comments;
+    }
+    
 
 }

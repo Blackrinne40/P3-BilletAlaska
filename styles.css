@@ -70,3 +70,13 @@ a.blogTitle
 {
     color:black;
 }
+h1.dashboardTitle
+{
+  text-align: left;
+  margin: auto; 
+
+}
+h2.dashboard
+{
+  text-align: center;
+}

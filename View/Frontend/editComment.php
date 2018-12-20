@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +7,8 @@
 	<link rel="stylesheet" type="text/css" href=".../styles.css">
 </head>
 <body>
-	
+	<h2>Modifier un commentaire</h2>
+	<hr style="width: 50%">
 	<form method="post" action=<?="./index.php?action=saveComment&id=".$comment->getId() ?>>
 		<label for="author">Author  </label>
         <input type="text" name="author" id="author" value=<?= $comment->getAuthor() ?> />
@@ -20,6 +22,6 @@
 
 		<button type="submit">Envoyer</button>
 	</form>
-
-</body>
-</html>
+	<hr style="width: 50%">
+<?php $content = ob_get_clean();   
+require_once('template/body.php'); ?>

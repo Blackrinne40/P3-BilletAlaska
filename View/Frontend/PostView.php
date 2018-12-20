@@ -1,16 +1,11 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>Billet simple pour l'Alaska - par Jean Forteroche</title>
-	<link rel="stylesheet" type="text/css" href="./styles.css">
-</head>
-<body>
 
-	<h1>Billet simple pour l'Alaska</h1>
-	<a href="./index.php">Retour à la page d'accueil</a>
 
-    <h3><strong><?=htmlspecialchars($post->getTitle())?></strong></h3>
+	<a href="./index.php?action=showPage&page=1">Retour à la page d'accueil</a>
+
+    <h3><strong><?=htmlspecialchars($post->getTitle($postId))?></strong></h3>
     <p>Publié par <?=htmlspecialchars($post->getAuthor())?> le <?=htmlspecialchars($post->getCreation_date())?></p>
 
     
@@ -36,11 +31,19 @@
                     <i>Auteur : <?= $comment->getAuthor(); ?></i><br/>
                     <i>Message : <?= $comment->getComment(); ?></i><br/>
                     <hr width="40%"/>  
+
                 </p>
+            <?php } ?>
+            <?php if ($pageId > 0) { ?>
+            <div><a class="stylebutton" href= <?= "index.php?action=post&id=".$post->getId()."&page=" .($pageId - 1) ?> > Page précédente</a></div>
+            <?php } ?>
+       
+
+            <?php if ($pageId < $commentsCount -1) { ?>
+                <div><a class="stylebutton" href= <?="index.php?action=post&id=".$post->getId()."&page=" .($pageId + 1)?> > Page suivante</a></div>
             <?php } ?>
             </p> 
 
     </div>
-	
-</body>
-</html>
+<?php $content = ob_get_clean();   
+require_once('template/body.php'); ?>

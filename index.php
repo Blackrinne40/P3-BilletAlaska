@@ -14,16 +14,39 @@
                     {
                         $success = true;
                     }
-                    $postControler->getPost($_GET['id'], $success);
-
+                    if(array_key_exists('page', $_GET) && isset($_GET['page']))
+                        {
+                          if(ctype_digit($_GET['page']))
+                          {
+                            $postControler->getPost($_GET['id'], $success,intval($_GET['page']));
+                          } 
+                          else
+                          {
+                            header('Location: index.php?action=post&id=' .$_GET['id']. '&page=0');
+                          } 
+                        }
+                    
+                    else
+                      {
+                        header('Location: index.php?action=post&id=' .$_GET['id']. '&page=0');
+                      }
                 }
+                else
+                  {
+                    header ('Location: index.php?action=showPage&page=1');
+                  } 
         		break;
 
             case 'editComment':
                 if (array_key_exists('id', $_GET) && isset($_GET['id'])) {
                     $commentController->editComment($_GET['id']);
                 }
+                else
+                      {
+                        header('Location: index.php?action=post&id=' .$_GET['id']. '&page=0');
+                      }
                 break;
+                
 
             case 'addComment':
                 if (array_key_exists('id', $_GET) && isset($_GET['id'])) {
@@ -33,12 +56,17 @@
                             $_POST['message']
                             );
                 }
+
             break;
 
             case 'reportComment':
                 if (array_key_exists('id', $_GET) && isset($_GET['id'])) {
                    $commentController->reportComment($_GET['id']);
                 }
+                else
+                      {
+                        header('Location: index.php?action=post&id=' .$_GET['id']. '&page=0');
+                      }
             break;
 
             case 'saveComment':
@@ -52,17 +80,33 @@
                   if(ctype_digit($_GET['page']))
                   {
                     $postControler->showPage(intval($_GET['page']));
-                  }    
+                  }   
+                  else
+                  {
+                    header ('Location: index.php?action=showPage&page=1');
+                  } 
                 }
+                else
+                  {
+                    header ('Location: index.php?action=showPage&page=1');
+                  } 
                 break;
-
+            /*case 'dashboard':
+              if(array_key_exists('dashboard', $_GET) && isset($_GET['dashboard']))
+              {
+                $postControler->goDashboard();
+              }
+              else
+              {
+                 header ('Location: index.php?action=showPage&page=1');
+              }*/
         	default:
-        		$postControler->getPosts();
+        		header ('Location: index.php?action=showPage&page=1');
         		break;
         }
     }   
     else {
-        	$postControler->getPosts();
+        	header ('Location: index.php?action=showPage&page=1');
            
         }
     

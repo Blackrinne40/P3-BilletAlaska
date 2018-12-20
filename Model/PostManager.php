@@ -35,17 +35,21 @@ class PostManager extends Database
 
     public function getComments($postId)
     {
-        $comments = $this -> db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
-        $comments->execute(array($postId));
-
-        return $comments;
+        $comments = $this->db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+        $req->execute(array($postId));
+        $comments = array();
+       while ($dbComment = $req-> fetch()){
+        $comment = new PostClass($dbComment);
+        $comments[] = $comment;
+       }
+        return $comments; 
     }
 
     public function postComment($postId,$author,$comment)
     {
-        $newComment = $this -> db -> prepare('INSERT INTO commentaires (post_id, author, comment, comment_date) VALUES (:post_id, :author, :comment, NOW()');
-        $affectedLines = $newComment -> execute(array($postId, $author, $comment));
-        return $affectedLines;
+        $req = $this -> db -> prepare('INSERT INTO commentaires (post_id, author, comment, comment_date) VALUES (:post_id, :author, :comment, NOW()');
+        $req->execute(array($postId, $author, $comment));
+    
     }
 
     public function getPostsCount()
@@ -66,5 +70,24 @@ class PostManager extends Database
         $posts[] = $post;
        }
         return $posts;
+    }
+    public function editComment($postId,$author,$comment)
+    {
+        $req = $this->db->prepare('INSERT INTO comments($postId,$author,$comment) VALUES (::postId, ::author,::comment)');
+        $req->execute(array());
+        
+    }
+
+    //ADMIN
+    public function getPostsAdmin()
+    {
+       $req = $this->db->prepare('SELECT id, title, author, content, textresum, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+       $req -> execute();
+       $postsAdmin = array();
+       while ($dbPostAdmin = $req-> fetch()){
+        $postAdmin = new PostClass($dbPostAdmin);
+        $postsAdmin[] = $postAdmin;
+       }
+        return $postsAdmin;
     }
 }
