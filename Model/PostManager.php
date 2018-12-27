@@ -79,9 +79,12 @@ class PostManager extends Database
     }
 
     //ADMIN
-    public function getPostsAdmin()
+    public function getPostsAdmin($limit, $offset)
     {
-       $req = $this->db->prepare('SELECT id, title, author, content, textresum, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+
+       $req = $this->db->prepare('SELECT id, title, author, content, textresum, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT :limitadmin OFFSET :offsetadmin');
+       $req->bindParam(':limitadmin', $limit, PDO::PARAM_INT);
+       $req->bindParam(':offsetadmin', $offset, PDO::PARAM_INT);
        $req -> execute();
        $postsAdmin = array();
        while ($dbPostAdmin = $req-> fetch()){

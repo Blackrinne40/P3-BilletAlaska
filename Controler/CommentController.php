@@ -52,4 +52,30 @@ class CommentController
         $comments = $this->commentManager->getCommentsByPage($limit, $offset);
             require_once('./View/Frontend/PostView.php');
     }
+    //ADMIN
+    public function getCommentsAdmin($pageComment)
+    {
+       $nbrComments = $this->commentManager->getCommentsCount();
+        $limit = 5;
+        $nbrPagesComments = ceil($nbrComments/$limit);
+
+        //$offset = ($page * $limit) - $limit;
+
+        $offset = ($pageComment > 0 && $pageComment <= $nbrPagesComments) ? ($pageComment - 1) * $limit : 0;
+       $comments = $this->commentManager->getCommentsByPage($limit, $offset); 
+
+       require_once('./View/Backend/allcomments.php');
+    }
+    public function getReportsComments($pageReport)
+    {
+        $nbrComments = $this->commentManager->getCommentsCount();
+        $limit = 5;
+        $nbrPagesComments = ceil($nbrComments/$limit);
+
+        //$offset = ($page * $limit) - $limit;
+
+        $offset = ($pageReport > 0 && $pageReport <= $nbrPagesComments) ? ($pageReport - 1) * $limit : 0;
+        $reportComments = $this->commentManager->getReportsByPage($limit, $offset); 
+        require_once('./View/Backend/reportcomments.php');
+    }
 }

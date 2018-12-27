@@ -82,10 +82,21 @@ class CommentManager extends Database
         $req->execute(array());
         $comments = array();
        while ($dbComment = $req-> fetch()){
-        $comment = new PostClass($dbComment);
+        $comment = new CommentClass($dbComment);
         $comments[] = $comment;
        }
         return $comments;
+    }
+     public function getReportsByPage($limit, $offset)
+    {
+        $req = $this->db->prepare('SELECT id, post_id, author, comment,reports DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE reports ORDER BY post_id DESC LIMIT ' .$limit.' OFFSET ' .$offset);
+        $req->execute(array());
+        $reportsComments = array();
+       while ($dbComment = $req-> fetch()){
+        $reportComment = new CommentClass($dbComment);
+        $reportsComments[] = $reportComment;
+       }
+        return $reportsComments;
     }
     
 

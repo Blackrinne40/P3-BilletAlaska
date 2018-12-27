@@ -3,7 +3,7 @@
 <html>
 
 	<h2>Derniers Chapitres</h2>
-	<a href="./View/Backend/dashboard.php"> Tableau de bord</a>
+	<a href="index.php?action=dashboard">Tableau de bord</a>
 		<?php foreach($posts as $post) {?>
 			<div>
 				<h3><strong><?=htmlspecialchars($post->getTitle())?></strong></h3>

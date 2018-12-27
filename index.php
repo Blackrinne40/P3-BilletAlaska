@@ -91,15 +91,55 @@
                     header ('Location: index.php?action=showPage&page=1');
                   } 
                 break;
-            /*case 'dashboard':
-              if(array_key_exists('dashboard', $_GET) && isset($_GET['dashboard']))
-              {
+            //ADMIN
+            case 'dashboard':
+              
                 $postControler->goDashboard();
-              }
-              else
+
+              /*else
               {
                  header ('Location: index.php?action=showPage&page=1');
               }*/
+              break;
+            case 'showAllPostsAdmin':
+              if(isset($_GET['page']))
+              {
+                if(ctype_digit($_GET['page']))
+                  {
+                $postControler->getPostsAdmin(intval($_GET['page']));
+                  }
+              }
+              else
+              {
+                header ('Location: index.php?action=dashboard&admin');
+              }
+              break;
+            case 'showAllCommentsAdmin': 
+              if(isset($_GET['page']))
+              {
+                if(ctype_digit($_GET['page']))
+                  {
+                  $commentController->getCommentsAdmin(intval($_GET['page']));
+                }
+              }
+              else
+              {
+                header ('Location: index.php?action=dashboard&admin');
+              }
+              break;
+            case 'showAllReportsComments':
+            if(isset($_GET['page']))
+              {
+                if(ctype_digit($_GET['page']))
+                  {
+                    $commentController->getReportsComments(intval($_GET['page']));
+                  }
+              }
+             else
+              {
+                header ('Location: index.php?action=dashboard&admin');
+              }
+              break;
         	default:
         		header ('Location: index.php?action=showPage&page=1');
         		break;

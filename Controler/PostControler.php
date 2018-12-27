@@ -56,14 +56,21 @@ class PostControler
 	        require_once('./View/Frontend/HomeView.php');
 	}
 	//ADMIN
-	public function getPostsAdmin()
+	public function getPostsAdmin($page)
 	{
-	    $postsAdmin = $this->postManager->getPostsAdmin();
+	    $nbrPosts = $this->postManager->getPostsCount();
+		$limit = 5;
+		$nbrPages = ceil($nbrPosts/$limit);
+
+		//$offset = ($page * $limit) - $limit;
+
+		$offset = ($page > 0 && $page <= $nbrPages) ? ($page - 1) * $limit : 0;
+	    $postsAdmin = $this->postManager->getPostsAdmin($limit, $offset);
 	    require_once('./View/Backend/allposts.php');
 	}
-	/*public function goDashboard()
+	public function goDashboard()
 	{
-	    $dashboard = $this->postManager->goDashboard();
-	    require ('./View/Backend/dashboard.php');
-	}*/
+	    require('./View/Backend/dashboard.php');
+	}
+	
 }
