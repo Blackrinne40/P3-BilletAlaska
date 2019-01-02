@@ -31,7 +31,8 @@ class CommentManager extends Database
         return $comment;
     }
 
-    public function saveComment($author,$comment, $commentId) {
+    public function saveComment($author,$comment, $commentId)
+    {
         $req = $this->db->prepare('UPDATE comments SET author = :author, comment = :comment WHERE id = :commentId');
         $req->execute(array(
           ':commentId' => $commentId,
@@ -78,7 +79,7 @@ class CommentManager extends Database
 
     public function getCommentsByPage($limit, $offset)
     {
-        $req = $this->db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments ORDER BY post_id DESC LIMIT ' .$limit.' OFFSET ' .$offset);
+        $req = $this->db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments ORDER BY post_id DESC LIMIT ' .$limit.' OFFSET ' .$offset);
         $req->execute(array());
         $comments = array();
        while ($dbComment = $req-> fetch()){
@@ -89,14 +90,41 @@ class CommentManager extends Database
     }
      public function getReportsByPage($limit, $offset)
     {
-        $req = $this->db->prepare('SELECT id, post_id, author, comment,reports DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE reports ORDER BY post_id DESC LIMIT ' .$limit.' OFFSET ' .$offset);
-        $req->execute(array());
+
+        $req = $this->db->prepare('SELECT id, post_id, author, comment,reports, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments WHERE reports>0 ORDER BY post_id DESC LIMIT :limitadmin OFFSET :offsetadmin');
+        $req->bindParam(':limitadmin', $limit, PDO::PARAM_INT);
+        $req->bindParam(':offsetadmin', $offset, PDO::PARAM_INT);
+        $req->execute();
         $reportsComments = array();
        while ($dbComment = $req-> fetch()){
         $reportComment = new CommentClass($dbComment);
         $reportsComments[] = $reportComment;
        }
         return $reportsComments;
+    }
+
+    public function deleteComment ($commentId)
+    {
+      $req = $this->db->prepare('DELETE FROM comments WHERE id=:id');
+      $req->execute(array(
+        'id' => $commentId
+      ));
+    }
+    public function getReportsCommentsCount()
+    {
+        $req = $this->db->prepare('SELECT COUNT(id) AS count  WHERE reports>0 FROM comments');
+        $req->execute(array());
+        $dbComment = $req->fetch();
+
+        return $dbComment['count']; 
+    }
+    public function approveComment($reports, $commentId) {
+        $req = $this->db->prepare('UPDATE comments SET reports = 0 WHERE id = comment_id');
+        $req->execute(array(
+          'comment_id' => $commentId,
+          'reports' => $reports
+        )); 
+        var_dump($reports);
     }
     
 

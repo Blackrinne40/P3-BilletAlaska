@@ -5,8 +5,6 @@ h1, h2, h3, h4
 }
 h3
 {
-    background-color:black;
-    color:white;
     font-size:0.9em;
     margin: auto;
     padding: 1.5px 1.5px 1.5px 1.5px;
@@ -15,11 +13,10 @@ h3
 }
 p
 {
-    background-color: lightgrey;
-    margin-top:3px;
+    display:block;
+    text-align: center;
     margin:auto;
     padding: 1px 1px 1px 1px;
-    text-align: center;
     width: 50%;
 }
 
@@ -79,4 +76,28 @@ h1.dashboardTitle
 h2.dashboard
 {
   text-align: center;
+}
+table.allPostsAdminTable
+{
+
+  text-align: center;
+  margin: auto;
+  padding: auto;
+  width: 50%;
+  border: solid 1px black;
+}
+td
+{
+  border: solid 1px black;
+  width:200px;
+}
+table.allCommentsAdminTable, .allReportsAdminTable
+{
+
+  text-align: center;
+  margin: auto;
+  padding: auto;
+  width: 70%;
+  border: solid 1px black;
+  vertical-align: text-top;
 }

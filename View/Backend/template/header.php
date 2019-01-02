@@ -23,4 +23,4 @@
 
 
 
-	<h1><a class="blogTitle" href="index.php?action=dashboard&admin">Tableau de bord</a></h1>
+	<h1><a class="blogTitle" href="index.php?action=dashboard">Tableau de bord</a></h1>

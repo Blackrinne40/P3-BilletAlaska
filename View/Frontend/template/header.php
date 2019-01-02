@@ -4,9 +4,13 @@
 	<meta charset="utf-8">
 	<title>Billet simple pour l'Alaska - par Jean Forteroche</title>
 	<link rel="stylesheet" type="text/css" href="./styles.css">
+    
+    <!-- Bootstrap 
+    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
+
 </head>
 <body>
-	<nav class="navbar" id="nav">
+	<nav class="navbar-default " id="nav">
         <div>
             <ul class="navbar">
                 <li class="nav-item">

@@ -2,7 +2,10 @@
 
 	<h2>Ajouter un article</h2>
 	<hr style="width: 50%">
-	<form method="post" action=<?="#"?>>
+	<form method="post" action=<?="index.php?action=addpost"?>>
+		<label for="author">Auteur </label>
+        <input type="text" name="author" id="author"/> <br/>
+
 		<label for="title">Titre </label>
         <input type="text" name="title" id="title"/>
         

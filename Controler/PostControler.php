@@ -33,16 +33,6 @@ class PostControler
 		require ('./View/Frontend/PostView.php');
 	}
 
-	public function editComment($postId,$author,$comment)
-	{
-		$post = $this->postManager->editComment();
-		$post-> prepare('INSERT INTO comments($postId,$author,$comment) VALUES (::postId, ::author,::comment)');
-		$post->execute(array());
-		$newComment = $post->fetch(); 
-
-		return $newcomment;
-	}
-
 	public function showPage($page)
 	{
 		$nbrPosts = $this->postManager->getPostsCount();
@@ -72,5 +62,32 @@ class PostControler
 	{
 	    require('./View/Backend/dashboard.php');
 	}
-	
+	public function deletePost($postId)
+    {
+        $this->postManager->deletePost($postId);
+        header('Location: index.php?action=showAllPostsAdmin&page=1');
+    }
+	public function editPost($postId)
+    {
+        $this->postManager->getPost($postId);
+        require('./View/Backend/editpost.php');
+    }
+    public function savePost($postId,$author,$title,$content,$textresum)
+	{
+		$comment = $this->commentManager->savePost($postId,$author,$title,$content,$textresum);
+		$comment = $this->commentManager->getPost($postId);
+
+		header('Location: index.php?action=showAllPostsAdmin&page=1');
+
+    }
+    public function addPost($author,$title,$content,$textresum)
+    {
+    	$this->postManager->addPost($author,$title,$content,$textresum);
+    	header('Location: index.php?action=showAllPostsAdmin&page=1');
+    }
+
+    public function goCreationPost()
+    {
+    	require('./View/Backend/addpost.php');
+    }
 }

@@ -68,14 +68,27 @@ class CommentController
     }
     public function getReportsComments($pageReport)
     {
-        $nbrComments = $this->commentManager->getCommentsCount();
-        $limit = 5;
+        $nbrComments = $this->commentManager->getReportsCommentsCount();
+        $limit = 4;
         $nbrPagesComments = ceil($nbrComments/$limit);
 
         //$offset = ($page * $limit) - $limit;
 
         $offset = ($pageReport > 0 && $pageReport <= $nbrPagesComments) ? ($pageReport - 1) * $limit : 0;
-        $reportComments = $this->commentManager->getReportsByPage($limit, $offset); 
+        $reportsComments = $this->commentManager->getReportsByPage($limit, $offset); 
         require_once('./View/Backend/reportcomments.php');
     }
+
+    public function deleteComment($commentId)
+    {
+        $this->commentManager->deleteComment($commentId);
+        header('Location: index.php?action=showAllCommentsAdmin&page=0');
+    }
+
+    public function approveComment($reports, $commentId)
+    {
+        $this->commentManager->approveComment($reports, $commentId);
+        //header('Location: index.php?action=showAllCommentsAdmin&page=0');
+    }
+
 }

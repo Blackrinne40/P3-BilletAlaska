@@ -73,7 +73,8 @@
                 if(array_key_exists('id', $_GET) && isset($_GET['id'])) {
                     $commentController->saveComment($_POST['author'],$_POST['comment'], $_GET['id']);
                 }
-                break;
+              break;
+
             case 'showPage':
                 if(array_key_exists('page', $_GET) && isset($_GET['page']))
                 {
@@ -91,6 +92,7 @@
                     header ('Location: index.php?action=showPage&page=1');
                   } 
                 break;
+
             //ADMIN
             case 'dashboard':
               
@@ -101,6 +103,7 @@
                  header ('Location: index.php?action=showPage&page=1');
               }*/
               break;
+
             case 'showAllPostsAdmin':
               if(isset($_GET['page']))
               {
@@ -111,9 +114,10 @@
               }
               else
               {
-                header ('Location: index.php?action=dashboard&admin');
+                header ('Location: index.php?action=dashboard');
               }
               break;
+
             case 'showAllCommentsAdmin': 
               if(isset($_GET['page']))
               {
@@ -124,22 +128,117 @@
               }
               else
               {
-                header ('Location: index.php?action=dashboard&admin');
+                header ('Location: index.php?action=dashboard');
               }
               break;
+
             case 'showAllReportsComments':
-            if(isset($_GET['page']))
-              {
-                if(ctype_digit($_GET['page']))
-                  {
-                    $commentController->getReportsComments(intval($_GET['page']));
-                  }
-              }
-             else
-              {
-                header ('Location: index.php?action=dashboard&admin');
-              }
+              if(isset($_GET['page']))
+                {
+                  if(ctype_digit($_GET['page']))
+                    {
+                      $commentController->getReportsComments(intval($_GET['page']));
+                    }
+                }
+               else
+                {
+                  header ('Location: index.php?action=dashboard');
+                }
               break;
+
+            case 'deletecomment': 
+              if(isset($_GET['id']))
+              {
+                if(ctype_digit($_GET['id']))
+                    {
+                      $commentController->deleteComment(intval($_GET['id']));
+                    }
+              }
+              else
+                {
+                  header ('Location: index.php?action=showAllCommentsAdmin&page=1');
+                }
+              break;
+
+            case 'deletepost': 
+              if(isset($_GET['id']))
+              {
+                if(ctype_digit($_GET['id']))
+                    {
+                      $postControler->deletePost(intval($_GET['id']));
+                    }
+              }
+              else
+                {
+                  header ('Location: index.php?action=showAllPostsAdmin&page=1');
+                }
+              break;
+
+            case 'editpost': 
+              if(isset($_GET['id']))
+              {
+                if(ctype_digit($_GET['id']))
+                    {
+                      $postControler->editPost(intval($_GET['id']));
+                    }
+              }
+              else
+                {
+                  header ('Location: index.php?action=showAllPostsAdmin&page=1');
+                }
+              break;
+
+            case 'savepost':
+                if(array_key_exists('id', $_GET) && isset($_GET['id'])) {
+                    $postControler->savePost($_POST['author'],$_POST['title'],$_POST['textresum'], $_POST['content'], $_GET['id']);
+                }
+                else
+                {
+                  header ('Location: index.php?action=showAllPostsAdmin&page=1');
+                }
+              break;
+            
+            case 'createpost':
+                $postControler->goCreationPost();
+                
+              break;
+
+            case 'addpost':
+                if (array_key_exists('title', $_POST))
+                {
+                  if(isset($_POST['textresum']))
+                  {
+                      if(isset($_POST['content']))
+                      {
+                        $postControler->addPost(
+                            $_POST['author'], 
+                            $_POST['title'],
+                            $_POST['content'],
+                            $_POST['textresum']
+                            );
+                      }
+                  }
+                }
+                else
+                {
+                  header ('Location: index.php?action=dashboard');
+                }
+              break;
+
+            case 'approvecomment': 
+              if(isset($_GET['id']))
+              {
+                if(ctype_digit($_GET['id']))
+                    {
+                      $commentController->approveComment(intval($_GET['id']));
+                    }
+              }
+              else
+                {
+                  header ('Location: index.php?action=showAllReportsComments&page=1');
+                }
+              break;
+
         	default:
         		header ('Location: index.php?action=showPage&page=1');
         		break;

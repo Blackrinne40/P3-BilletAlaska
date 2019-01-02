@@ -71,13 +71,7 @@ class PostManager extends Database
        }
         return $posts;
     }
-    public function editComment($postId,$author,$comment)
-    {
-        $req = $this->db->prepare('INSERT INTO comments($postId,$author,$comment) VALUES (::postId, ::author,::comment)');
-        $req->execute(array());
-        
-    }
-
+    
     //ADMIN
     public function getPostsAdmin($limit, $offset)
     {
@@ -92,5 +86,35 @@ class PostManager extends Database
         $postsAdmin[] = $postAdmin;
        }
         return $postsAdmin;
+    }
+    public function deletePost ($postId)
+    {
+      $req = $this->db->prepare('DELETE FROM posts WHERE id=:id');
+      $req->execute(array(
+        'id' => $postId
+      ));
+    }
+    public function savePost($postId,$author,$title,$content,$textresum)
+    {
+        $req = $this->db->prepare('UPDATE posts SET author = :author, title = :title, content = :content, textresum = :textresum WHERE id = :postId');
+        $req->execute(array(
+          'postId' => $commentId,
+          'author' => $author,
+          'title' => $title,
+          'content' => $content,
+          'textresum' => $textresum
+        )); 
+    }
+
+    public function addPost($author,$title,$content,$textresum)
+    {
+      $req = $this->db->prepare('INSERT INTO posts(author, title,content,textresum, creation_date) VALUES (:author, :title, :content, :textresum, NOW())');
+      $req->execute(array(
+        'author' => $author,
+        'title' => $title,
+        'content' => $content,
+        'textresum' => $textresum
+      ));
+
     }
 }
