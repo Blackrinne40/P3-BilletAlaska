@@ -3,13 +3,18 @@
 <html>
 
 
-	<a href="./index.php?action=showPage&page=1">Retour à la page d'accueil</a>
-
+	<a class="link-post" href="./index.php?action=showPage&page=1"><i class="fas fa-chevron-left"></i> Retour à la page d'accueil</a>
+    <br/>
+    <div class="container">
     <h3><strong><?=htmlspecialchars($post->getTitle($postId))?></strong></h3>
-    <p>Publié par <?=htmlspecialchars($post->getAuthor())?> le <?=htmlspecialchars($post->getCreation_date())?></p>
-
+    <p class="text-center">Publié par 
+        <span style="color: Tomato;">
+            <i class=" fas fa-pen-square"></i> 
+        </span><?=htmlspecialchars($post->getAuthor())?> 
+        le <span style="color: royalblue;"><i class="fas fa-calendar-day"></i></span> <?=htmlspecialchars($post->getCreation_date())?></p>
+    </div>
     
-    <div>
+    <div class="container text-justify">
         
         <p><?= $post->getContent() ?><br/></p>
 
@@ -34,15 +39,20 @@
 
                 </p>
             <?php } ?>
+
+        <nav aria-label="Navigation Home View">
+            <div class="pagination">
             <?php if ($pageId > 0) { ?>
-            <div><a class="stylebutton" href= <?= "index.php?action=post&id=".$post->getId()."&page=" .($pageId - 1) ?> > Page précédente</a></div>
+            <div class="page-item"><a class="stylebutton page-link" href= <?= "index.php?action=post&id=".$post->getId()."&page=" .($pageId - 1) ?> > Page précédente</a></div>
             <?php } ?>
        
 
             <?php if ($pageId < $commentsCount -1) { ?>
-                <div><a class="stylebutton" href= <?="index.php?action=post&id=".$post->getId()."&page=" .($pageId + 1)?> > Page suivante</a></div>
+                <div class="page-item"><a class="stylebutton page-link" href= <?="index.php?action=post&id=".$post->getId()."&page=" .($pageId + 1)?> > Page suivante</a></div>
             <?php } ?>
-            </p> 
+            </p>
+            </div>
+        </nav>
 
     </div>
 <?php $content = ob_get_clean();   
