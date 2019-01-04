@@ -85,10 +85,10 @@ class CommentController
         header('Location: index.php?action=showAllCommentsAdmin&page=0');
     }
 
-    public function approveComment($reports, $commentId)
+    public function approveComment($commentId)
     {
-        $this->commentManager->approveComment($reports, $commentId);
-        //header('Location: index.php?action=showAllCommentsAdmin&page=0');
+        $this->commentManager->approveComment($commentId);
+        header('Location: index.php?action=showAllCommentsAdmin&page=0');
     }
 
 }

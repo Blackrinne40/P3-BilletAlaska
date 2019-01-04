@@ -118,13 +118,11 @@ class CommentManager extends Database
 
         return $dbComment['count']; 
     }
-    public function approveComment($reports, $commentId) {
-        $req = $this->db->prepare('UPDATE comments SET reports = 0 WHERE id = comment_id');
+    public function approveComment($commentId) {
+        $req = $this->db->prepare('UPDATE comments SET reports = 0 WHERE id = :comment_id');
         $req->execute(array(
-          'comment_id' => $commentId,
-          'reports' => $reports
+          ':comment_id' => $commentId
         )); 
-        var_dump($reports);
     }
     
 

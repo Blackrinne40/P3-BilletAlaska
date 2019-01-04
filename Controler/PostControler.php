@@ -69,13 +69,14 @@ class PostControler
     }
 	public function editPost($postId)
     {
-        $this->postManager->getPost($postId);
+        $post = $this->postManager->getPost($postId);
         require('./View/Backend/editpost.php');
     }
     public function savePost($postId,$author,$title,$content,$textresum)
 	{
-		$comment = $this->commentManager->savePost($postId,$author,$title,$content,$textresum);
-		$comment = $this->commentManager->getPost($postId);
+
+		$this->postManager->savePost($postId,$author,$title,$content,$textresum);
+		$post = $this->postManager->getPost($postId);
 
 		header('Location: index.php?action=showAllPostsAdmin&page=1');
 

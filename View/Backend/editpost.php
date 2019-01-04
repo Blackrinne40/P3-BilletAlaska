@@ -12,12 +12,12 @@
 	<form method="post" action=<?= "index.php?action=savepost&id=".$post->getId()?>>
 
 		<label for="author">Auteur  </label>
-        <input type="text" name="author" id="author" value=<?= $post->getAuthor() ?>/>
+        <input type="text" name="author" id="author" value="<?= $post->getAuthor() ?>"/>
         
         <br/>
 
         <label for="title">Titre  </label>
-        <input type="text" name="title" id="title" value=<?= $post->getTitle() ?>/>
+        <input type="text" name="title" id="title" value="<?= $post->getTitle() ?>"/>
         
         <br/>
 

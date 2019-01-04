@@ -98,11 +98,11 @@ class PostManager extends Database
     {
         $req = $this->db->prepare('UPDATE posts SET author = :author, title = :title, content = :content, textresum = :textresum WHERE id = :postId');
         $req->execute(array(
-          'postId' => $commentId,
-          'author' => $author,
-          'title' => $title,
-          'content' => $content,
-          'textresum' => $textresum
+          ':postId' => $postId,
+          ':author' => $author,
+          ':title' => $title,
+          ':content' => $content,
+          ':textresum' => $textresum
         )); 
     }
 

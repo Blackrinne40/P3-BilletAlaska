@@ -3,20 +3,23 @@
 	<h2>Liste des articles</h2>
 
 		<table class="allPostsAdminTable">
+			<thead>
 			<tr><div>
 					<td>Articles</td>
-					<td colspan="3" width="50%">Actions</td>
+					<td>Actions</td>
 
 				</div></tr>
-
+			</thead>
+			<tbody>
 		<?php foreach($postsAdmin as $post) {?>
-			<table class="allPostsAdminTable">
 			<tr><div>
 				<td><h3><strong><?=htmlspecialchars($post->getTitle())?></strong></h3></td>
-				<td><a href=<?= "index.php?action=post&id=". $post->getId(). "&page=0" ?>> Consulter le billet</a></td>
-				<td><a href=<?="index.php?action=editpost&id=".$post->getId()?>>Modifier le billet</a></td>
-				<td><a href=<?="index.php?action=deletepost&id=".$post->getId()?>>Supprimer le billet</a></td>
+				<td><a href=<?= "index.php?action=post&id=". $post->getId(). "&page=0" ?>> Consulter le billet</a>
+					<a href=<?="index.php?action=editpost&id=".$post->getId()?>>Modifier le billet</a>
+					<a href=<?="index.php?action=deletepost&id=".$post->getId()?>>Supprimer le billet</a>
+				</td>
 			</div></tr>
+			</tbody>
 		<?php } ?>
 
 			</table>

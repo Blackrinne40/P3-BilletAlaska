@@ -190,7 +190,7 @@
 
             case 'savepost':
                 if(array_key_exists('id', $_GET) && isset($_GET['id'])) {
-                    $postControler->savePost($_POST['author'],$_POST['title'],$_POST['textresum'], $_POST['content'], $_GET['id']);
+                    $postControler->savePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content'], $_POST['textresum']);
                 }
                 else
                 {

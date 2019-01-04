@@ -3,21 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<title>Billet simple pour l'Alaska - par Jean Forteroche</title>
-	<link rel="stylesheet" type="text/css" href="./styles.css">
+
     
-    <!-- Bootstrap 
-    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
+    <!--Bootstrap -->
+    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+        <link rel="stylesheet" type="text/css" href="./styles.css">
 
 </head>
 <body>
-	<nav class="navbar-default " id="nav">
-        <div>
-            <ul class="navbar">
-                <li class="nav-item">
-                    <A class="nav-link" href="index.php" id="navHome"> Accueil </a>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.php" id="navHome"> Accueil </a>
                 </li>
                 <li class ="nav-item">
-                    <A class="nav-link" href="index.php?action=connect" id="navConnect"><button>Connexion</button></a>
+                    <a class="nav-link" href="index.php?action=connect" id="navConnect">Connexion</a>
                 </li>
 
             </ul>
