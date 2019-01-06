@@ -3,6 +3,7 @@
   max-width: 100%;
   padding: 0 30px;
   padding-bottom: 30px;
+
 }
 
 
@@ -28,7 +29,7 @@ img {
   width: 30%;
   margin: auto;
 }
-h1, h2, h3{
+h1, h2, h3, h4 {
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   text-align: center;
 }
@@ -44,8 +45,50 @@ a.read-more{
   margin: auto;
   text-align: center;
 }
+form{
+    width: 50%;
+    margin: auto;
+}
+p.postcontent{
+  width: 50%;
+  margin: auto;
+}
+.comment{
+  width: 40%;
+  margin: auto;
+}
+.commenttitle{
+  text-decoration: underline;
+  font-weight: bold;
+}
+.nodecorationlink{
+  color: black;
+}
 
-
+/*Infobulle*/
+a span.infobulle{ 
+  position:absolute;
+  margin-top:25px; 
+  margin-left:-25px;
+  color:#fff; 
+  background:rgba(0, 0, 0, 0.5); 
+  padding:25px; 
+  border-radius:3px; 
+                
+  /* Faire disparaire infobulle par défaut */
+  /* On determine l'origine de la rotation */ 
+  transform:scale(0) rotate(-180deg);
+  /* Faire durer l'effet */
+  transition:all .25s;
+  /* Effet sur la transparence */ 
+  opacity:0;
+}
+  /* Apparition de la bulle avec le scale à 1 */ 
+a:hover span.infobulle, a:focus span.infobulle{ 
+  transform:scale(1) rotate(0);
+  /* Effet sur la transparence */ 
+  opacity:1;
+}
 
 
 /*h1, h2, h3, h4

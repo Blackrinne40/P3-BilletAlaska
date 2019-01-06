@@ -12,7 +12,7 @@ class CommentManager extends Database
 
     public function getCommentsByPost($postId, $pageId)
     {
-       $req = $this -> db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments WHERE post_id = :postId ORDER BY comment_date DESC LIMIT 3 OFFSET ' .$pageId*3);
+       $req = $this -> db->prepare('SELECT id, post_id, author, comment, reports, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments WHERE post_id = :postId ORDER BY comment_date DESC LIMIT 3 OFFSET ' .$pageId*3);
        $req->execute(array(':postId' => $postId));
        $comments=array();
        while ($dbComment = $req->fetch()){

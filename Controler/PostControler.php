@@ -91,4 +91,8 @@ class PostControler
     {
     	require('./View/Backend/addpost.php');
     }
+    public function connectAdmin()
+	{
+	    require('./View/Frontend/connect.php');
+	}
 }

@@ -239,6 +239,15 @@
                 }
               break;
 
+            case 'connect':
+              $postControler->connectAdmin();
+
+              /*else
+              {
+                 header ('Location: index.php?action=showPage&page=1');
+              }*/
+              break;
+
         	default:
         		header ('Location: index.php?action=showPage&page=1');
         		break;
