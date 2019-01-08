@@ -110,10 +110,6 @@
               
                 $postControler->goDashboard();
 
-              /*else
-              {
-                 header ('Location: index.php?action=showPage&page=1');
-              }*/
               break;
 
             case 'showAllPostsAdmin':
@@ -265,11 +261,22 @@
 
             case 'connect':
               $postControler->connectAdmin();
+              break;
 
-              /*else
-              {
-                 header ('Location: index.php?action=showPage&page=1');
-              }*/
+            case 'checkconnect':
+              if(isset($_POST['login']) && !empty($_POST['login'])){
+                if($_POST['login']== 'Admin'){
+                  if(isset($_POST['password']) && !empty($_POST['password'])){
+                    if($_POST['password'] == ){
+                      $postControler->goDashboard();
+                    }
+                    else{ header('Location: index.php?action=connect');}
+                  }
+                  else{ header('Location: index.php?action=connect');}
+                }
+                else{ header('Location: index.php?action=connect');}
+              }
+              else{ header('Location: index.php?action=connect');}
               break;
 
         	default:

@@ -2,7 +2,7 @@
 
 	<h2 class="connect">Connexion</h2>
 
-	<form method="post" action="#">
+	<form method="post" action="index.php?action=checkconnect">
 		<div class="form-group">
                 <label for='login'>Login </label>
                 <input type="text" name="login" id="login" class="form-control" /><br/>
