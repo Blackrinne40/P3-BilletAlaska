@@ -2,37 +2,52 @@
 
 	<h2>Liste des articles</h2>
 
-		<table class="allPostsAdminTable">
-			<thead>
-			<tr><div>
+		<table class=" container table table-bordered">
+			<thead class="table">
+			<tr class="table text-center">
 					<td>Articles</td>
 					<td>Actions</td>
 
-				</div></tr>
+			</tr>
 			</thead>
-			<tbody>
+			<tbody class="table">
 		<?php foreach($postsAdmin as $post) {?>
-			<tr><div>
-				<td><h3><strong><?=htmlspecialchars($post->getTitle())?></strong></h3></td>
-				<td><a href=<?= "index.php?action=post&id=". $post->getId(). "&page=0" ?>> Consulter le billet</a>
-					<a href=<?="index.php?action=editpost&id=".$post->getId()?>>Modifier le billet</a>
-					<a href=<?="index.php?action=deletepost&id=".$post->getId()?>>Supprimer le billet</a>
+			<tr class="table">
+				<td><strong><?=htmlspecialchars($post->getTitle())?></strong></td>
+				<td>
+					<a href=<?= "index.php?action=post&id=". $post->getId(). "&page=0" ?>> 
+						<i class="fas fa-book-open fa-2x"></i>
+						<span class="infobulle">Consulter le billet</span>
+					</a>
+					<a href=<?="index.php?action=editpost&id=".$post->getId()?>>
+						<i class="fas fa-edit fa-2x"></i>
+						<span class="infobulle">Modifier le billet</span>
+					</a>
+					<a href=<?="index.php?action=deletepost&id=".$post->getId()?>>
+						<i class="fas fa-trash-alt fa-2x"></i>
+						<span class="infobulle">Supprimer le billet</span>
+					</a>
 				</td>
-			</div></tr>
+			</tr>
 			</tbody>
 		<?php } ?>
 
 			</table>
+			<br/>
 
-		<?php if ($page > 1) { ?>
-        <div><a class="stylebutton" href= <?= "index.php?action=showAllPostsAdmin&page=" .($page - 1) ?> > Page précédente</a></div>
-    	<?php } ?>
-   
+		<nav aria-label="Navigation Home View">
+            <div class="pagination">
+				<?php if ($page > 1) { ?>
+		        <div class="page-item"><a class="stylebutton page-link" href= <?= "index.php?action=showAllPostsAdmin&page=" .($page - 1) ?> > Page précédente</a></div>
+		    	<?php } ?>
+		   
 
-    
-	    <?php if ($page < $nbrPages) { ?>
-	        <div><a class="stylebutton" href= <?="index.php?action=showAllPostsAdmin&page=" .($page + 1)?> > Page suivante</a></div>
-	    <?php } ?>
+		    
+			    <?php if ($page < $nbrPages) { ?>
+			        <div class="page-item"><a class="stylebutton page-link" href= <?="index.php?action=showAllPostsAdmin&page=" .($page + 1)?> > Page suivante</a></div>
+			    <?php } ?>
+	    	</div>
+        </nav> <br/>
 
 
 <?php $content = ob_get_clean();   

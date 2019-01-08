@@ -16,7 +16,7 @@
     
     <div class="container text-justify">
         
-        <p class="postcontent"><?= $post->getContent() ?><br/></p>
+        <div class="postcontent "><?= htmlspecialchars_decode($post->getContent()) ?></div>
 
     </div>
     <hr width="50%"/>
@@ -55,7 +55,7 @@
                         </a>
                     </button>
                     <br/>
-                    Signalements :<span class="badge badge-primary badge-pill"><?php $comment-> getReports()?></span><br/>
+                    Signalements : <span class="badge badge-primary badge-pill"><?php echo($comment-> getReports())?></span><br/>
                     
                     <i>Auteur : <?= $comment->getAuthor(); ?></i><br/>
                     <i >Message : <?= $comment->getComment(); ?></i><br/>

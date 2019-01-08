@@ -50,11 +50,17 @@
 
             case 'addComment':
                 if (array_key_exists('id', $_GET) && isset($_GET['id'])) {
-                   $commentController->addComment(
+                   if(isset($_POST['author']) && !empty($_POST['author'])){
+                    if(isset($_POST['message']) && !empty($_POST['message'])){
+                      $commentController->addComment(
                             $_GET['id'],
                             $_POST['author'], 
                             $_POST['message']
                             );
+                    }
+                    else { echo "Vous n'avez pas rempli tous les champs!";}
+                   }
+                   else { echo "Vous n'avez pas rempli tous les champs!";}
                 }
 
             break;
@@ -71,7 +77,13 @@
 
             case 'saveComment':
                 if(array_key_exists('id', $_GET) && isset($_GET['id'])) {
-                    $commentController->saveComment($_POST['author'],$_POST['comment'], $_GET['id']);
+                  if(isset($_POST['author']) && !empty($_POST['author'])){
+                    if(isset($_POST['comment']) && !empty($_POST['comment'])){
+                      $commentController->saveComment($_POST['author'],$_POST['comment'], $_GET['id']);
+                    }
+                    else {echo "Vous avez laissé un champ vide!";}
+                  }
+                  else {echo "Vous avez laissé un champ vide!";}
                 }
               break;
 
@@ -189,8 +201,20 @@
               break;
 
             case 'savepost':
-                if(array_key_exists('id', $_GET) && isset($_GET['id'])) {
-                    $postControler->savePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content'], $_POST['textresum']);
+                if(array_key_exists('id', $_GET) && isset($_GET['id'])){
+                  if (isset($_POST['author']) && !empty($_POST['author'])) {
+                    if(isset($_POST['title'])&& !empty($_POST['title'])){
+                      if(isset($_POST['content'])&& !empty($_POST['content'])){
+                        if(isset($_POST['textresum']) && !empty($_POST['textresum'])){
+                          $postControler->savePost($_GET['id'], $_POST['author'], $_POST['title'], $_POST['content'], $_POST['textresum']);
+                        }
+                        else {echo "Vous avez laissé un champ vide!";}
+                      }
+                      else {echo "Vous avez laissé un champ vide!";}
+                    }
+                    else {echo "Vous avez laissé un champ vide!";}
+                  }
+                  else {echo "Vous avez laissé un champ vide!";} 
                 }
                 else
                 {

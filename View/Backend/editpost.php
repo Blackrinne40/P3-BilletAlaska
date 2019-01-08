@@ -10,28 +10,31 @@
 	<h2>Modifier un article</h2>
 	<hr style="width: 50%">
 	<form method="post" action=<?= "index.php?action=savepost&id=".$post->getId()?>>
+		<div class="form-group">
+			<label for="author">Auteur  </label>
+	        <input type="text" name="author" id="author" class="form-control" value="<?= htmlspecialchars_decode($post->getAuthor())?>"/>
+	        <br/>
+	    </div>
 
-		<label for="author">Auteur  </label>
-        <input type="text" name="author" id="author" value="<?= $post->getAuthor() ?>"/>
-        
-        <br/>
+	    <div class="form-group">
+	        <label for="title">Titre  </label>
+	        <input type="text" name="title" id="title" class="form-control" value="<?= htmlspecialchars_decode($post->getTitle())?>"/>
+	        <br/>
+        </div>
 
-        <label for="title">Titre  </label>
-        <input type="text" name="title" id="title" value="<?= $post->getTitle() ?>"/>
-        
-        <br/>
+        <div class="form-group">
+			<label for="content">Contenu</label>
+	        <textarea row='200' col='20' name="content" class="form-control" id="content"><?= htmlspecialchars_decode($post->getContent())?></textarea>
+	        <br/>
+        </div>
 
-		<label for="content">Contenu</label>
-        <textarea row='50' col='20' name="content" id="content"><?= $post->getContent() ?></textarea>
-        
-        <br/>
+        <div class="form-group">
+	        <label for="textresum">Résumé</label>
+	        <textarea row='100' col='20' name="textresum" class="form-control" id="textresum"><?= htmlspecialchars_decode($post->getTextResum())?></textarea>
+	        <br/>
+        </div>
 
-        <label for="textresum">Résumé</label>
-        <textarea row='50' col='20' name="textresum" id="textresum"><?= $post->getTextResum() ?></textarea>
-        
-        <br/>
-
-		<button type="submit">Envoyer</button>
+		<button class="btn btn-primary" type="submit">Envoyer</button>
 	</form>
 	<hr style="width: 50%">
 <?php $content = ob_get_clean();   

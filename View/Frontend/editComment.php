@@ -10,17 +10,19 @@
 	<h2>Modifier un commentaire</h2>
 	<hr style="width: 50%">
 	<form method="post" action=<?="./index.php?action=saveComment&id=".$comment->getId() ?>>
-		<label for="author">Author  </label>
-        <input type="text" name="author" id="author" value=<?= $comment->getAuthor() ?> />
-        
-        <br/>
+		<div class="form-group">
+			<label for="author">Author  </label>
+	        <input type="text" name="author" id="author" class="form-control" value=<?= $comment->getAuthor() ?> />
+	        <br/>
+	    </div>
 
-		<label for="comment">Commentaire</label>
-        <textarea row='50' col='20' name="comment" id="comment"><?= $comment->getComment() ?></textarea>
-        
-        <br/>
+	    <div class="form-group">
+			<label for="comment">Commentaire</label>
+	        <textarea row='50' col='20' name="comment" class="form-control" id="comment"><?= $comment->getComment() ?></textarea>
+	        <br/>
+	    </div>
 
-		<button type="submit">Envoyer</button>
+		<button class="btn btn-primary" type="submit">Envoyer</button>
 	</form>
 	<hr style="width: 50%">
 <?php $content = ob_get_clean();   
