@@ -7,7 +7,7 @@ class Database {
 		
 		try
         {
-            $this-> db=new PDO('mysql:host=localhost;dbname=billetalaska;charset=utf8', 'root', '');
+            $this-> db=new PDO('mysql:host=sql211.hebergratuit.net;dbname=heber_22572415_BilletAlaska;charset=utf8', 'heber_22572415', '4a39T7Nfgx');
         }
         catch(Exception $e)
         {

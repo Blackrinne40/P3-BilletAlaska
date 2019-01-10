@@ -118,23 +118,18 @@ a:hover span.infobulle, a:focus span.infobulle{
 .btn-text-color{
   color: white;
 }
-.head-navbar{
-  margin-left: 70%;
+.row {
+  margin: 0, 0, 0 ,0;
 }
 
-.flex-container{
-  display: flex;
 
-}
-
-@media all and (max-width: 1024px)
+/*@media screen and handheld and (max-width: 800px)
+  @media all and (max-width: 400px)
 {
-  .flex-element{
-  display: flex;
-  flex-wrap: wrap;
-
+    .navsize{
+    width: auto;
+  }
 }
-
   /*.head-navbar{
   width: auto;
   text-align: left;

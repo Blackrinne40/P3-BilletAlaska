@@ -267,7 +267,7 @@
               if(isset($_POST['login']) && !empty($_POST['login'])){
                 if($_POST['login']== 'Admin'){
                   if(isset($_POST['password']) && !empty($_POST['password'])){
-                    if($_POST['password'] == ){
+                    if(password_verify ($_POST['password'],'$2y$10$aLBE2lc6QZOWOQ4lMLThdOqiLLd5PsE/TfE2F2ZWaqhvxpf6ik8gW')){
                       $postControler->goDashboard();
                     }
                     else{ header('Location: index.php?action=connect');}

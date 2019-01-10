@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Billet simple pour l'Alaska - Tableau de bord</title>
 
     <!--Bootstrap -->
@@ -21,23 +22,25 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light navbaradmin" id="nav">
-        <nav class="navbar navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light row" id="nav">
+        <div class="navbar navbar-light bg-light col-lg-3 col-md-4  col-sm-4 col-xs-2">
             <span class="navbar-brand mb-0 h1">
                 <a class="blogTitle" href="index.php?action=dashboard">Tableau de bord</a>
             </span>
-        </nav>
-        <div class="collapse navbar-collapse head-navbar">
-            <ul class="navbar-nav navbar-right mr-auto">
-                <li class="nav-item active">
+        </div>
+        <nav class="col-lg-9 col-md-8 col-sm-8 col-xs-10">
+            <ul class="row justify-content-end  ">
+                <li class="nav-item active ">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <a class="nav-link" href="index.php?action=showPage&page=1" id="navHome">
                         <i class="fas fa-home fa-md"> </i> Accueil du blog
                     </a>
                 </li>
-                <li class ="nav-item">
-                    <a class="nav-link btn btn-primary" href="index.php?action=disconnect" id="navConnect"><i class="btn-text-color">Déconnexion</i></a>
+                <li class ="nav-item ">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <a class="nav-link " href="index.php?action=disconnect" id="navConnect">Déconnexion</a>
                 </li>
             </ul>
-        </div>
+        </nav>
     </nav>
 

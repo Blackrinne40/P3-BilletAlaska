@@ -19,28 +19,58 @@
       });
     </script>
 
-    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <!--JQuery-->
+    <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+
+    <link rel="stylesheet"  type="text/css" href="./styles.css">
 
 </head>
 <body>
 	
-    <nav class="flex-container navbar navbar-expand-lg navbar-light bg-light" id="nav">
-        <nav class=" flex-element navbar navbar-light bg-light">
+    <!--
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navsize row" id="nav">
+        <div class="navbar navbar-light bg-light col-lg-3">
             <span class="navbar-brand mb-0 h1">
                 <a class="blogTitle" href="index.php?action=showPage&page=1">Billet simple pour l'Alaska</a>
             </span>
-        </nav>
-        <div class=" flex-element collapse navbar-collapse head-navbar">
-            <ul class="navbar-nav navbar-right mr-auto">
-                <li class="nav-item active">
+        </div>
+        <nav class="collapse navbar-collapse head-navbar col-lg-9">
+
+            <ul class="navbar-nav navbar-right mr-auto row">
+                <li class="nav-item active col-lg-6">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                      <a class="nav-link" href="index.php?action=showPage&page=1" id="navHome"><i class="fas fa-home fa-md"></i>  Accueil</a>
                 </li>
-                <li class ="nav-item">
+                <li class ="nav-item col-lg-6">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <a class="nav-link" href="index.php?action=connect" id="navConnect">Connexion</a>
                 </li>
 
             </ul>
+        </nav>
+    </nav>
+    -->
+
+    <nav class="navbar navbar-light bg-light row" id="nav">
+        <div class="navbar navbar-light bg-light col-lg-3 col-md-4  col-sm-4 col-xs-2">
+            <span class="navbar-brand mb-0 h1">
+                <a class="blogTitle" href="index.php?action=showPage&page=1">Billet simple pour l'Alaska</a>
+            </span>
         </div>
+        <nav class="col-lg-9 col-md-8 col-sm-8 ">
+
+            <ul class="row justify-content-end col-lg-11 col-md-11 col-sm-11 ">
+                <li class="nav-item active ">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                     <a class="nav-link" href="index.php?action=showPage&page=1" id="navHome"><i class="fas fa-home fa-md"></i>  Accueil</a>
+                </li>
+                <li class ="nav-item ">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <a class="nav-link" href="index.php?action=connect" id="navConnect">Connexion</a>
+                </li>
+
+            </ul>
+        </nav>
     </nav>
 <section>
 

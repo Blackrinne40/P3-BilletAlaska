@@ -2,17 +2,18 @@
 
 	<h2>Liste des articles</h2>
 
-		<table class=" container table table-bordered">
-			<thead class="table">
+	<div class="row">
+		<table class=" container table table-bordered ">
+			<thead>
 			<tr class="table text-center">
 					<td>Articles</td>
 					<td>Actions</td>
 
 			</tr>
 			</thead>
-			<tbody class="table">
+			<tbody>
 		<?php foreach($postsAdmin as $post) {?>
-			<tr class="table">
+			<tr>
 				<td><strong><?=htmlspecialchars($post->getTitle())?></strong></td>
 				<td>
 					<a href=<?= "index.php?action=post&id=". $post->getId(). "&page=0" ?>> 
@@ -33,6 +34,7 @@
 		<?php } ?>
 
 			</table>
+	</div>
 			<br/>
 
 		<nav aria-label="Navigation Home View">

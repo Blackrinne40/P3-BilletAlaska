@@ -2,7 +2,8 @@
 
 	<h2>Commentaires signalés</h2>
 	
-		<table class=" container table table-bordered">
+	<div class="row">
+		<table class=" container table table-bordered col-lg-10 col-md-8 col-sm-8 col-xs-6">
 			<thead class="table">
 				<tr class="table text-center">
 					<td>Auteur</td>
@@ -34,7 +35,7 @@
 			
 		<?php } ?>
 		</table>
-
+	</div>
 		<nav aria-label="Navigation Home View">
             <div class="pagination">
 				<?php if ($pageReport > 1) { ?>
