@@ -8,7 +8,7 @@
 	<div class="container">
 		<h2>Derniers Chapitres</h2>
 	</div>
-	<a class="link-post" href="index.php?action=dashboard">Tableau de bord</a>
+	
 	
 	<div class="section">
 		<div class="container">

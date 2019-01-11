@@ -95,4 +95,11 @@ class PostControler
 	{
 	    require('./View/Frontend/connect.php');
 	}
+	public function disconnect()
+	{
+	    if(isset($_SESSION['userLogged'])){
+	    	session_destroy();
+	    	header('Location: index.php?action=showPage&page=1');
+	    }
+	}
 }

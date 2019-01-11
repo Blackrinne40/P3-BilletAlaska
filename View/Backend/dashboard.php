@@ -1,6 +1,8 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
 
-	<h2 class="dashboard">Bienvenue Admin </h2>
+?>
+
+	<h2 class="dashboard">Bienvenue Jean </h2>
 	
 
 	

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,11 +32,13 @@
         <nav class="col-lg-9 col-md-8 col-sm-8 col-xs-10">
             <ul class="row justify-content-end  ">
                 <li class="nav-item active ">
+                    
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <a class="nav-link" href="index.php?action=showPage&page=1" id="navHome">
                         <i class="fas fa-home fa-md"> </i> Accueil du blog
                     </a>
                 </li>
+            
                 <li class ="nav-item ">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <a class="nav-link " href="index.php?action=disconnect" id="navConnect">Déconnexion</a>

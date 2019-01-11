@@ -1,6 +1,7 @@
 <?php
-    require_once('./Controler\PostControler.php');
-    require_once('./Controler\CommentController.php');
+session_start();
+    require_once('./Controler/PostControler.php');
+    require_once('./Controler/CommentController.php');
 
     $postControler = new PostControler(); 
     $commentController = new CommentController(); 
@@ -268,7 +269,9 @@
                 if($_POST['login']== 'Admin'){
                   if(isset($_POST['password']) && !empty($_POST['password'])){
                     if(password_verify ($_POST['password'],'$2y$10$aLBE2lc6QZOWOQ4lMLThdOqiLLd5PsE/TfE2F2ZWaqhvxpf6ik8gW')){
+                      
                       $postControler->goDashboard();
+                      $_SESSION['userLogged'] = true ;
                     }
                     else{ header('Location: index.php?action=connect');}
                   }
@@ -277,6 +280,10 @@
                 else{ header('Location: index.php?action=connect');}
               }
               else{ header('Location: index.php?action=connect');}
+              break;
+
+            case 'disconnect':
+              $postControler->disconnect();
               break;
 
         	default:

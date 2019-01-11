@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,31 +28,6 @@
 
 </head>
 <body>
-	
-    <!--
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navsize row" id="nav">
-        <div class="navbar navbar-light bg-light col-lg-3">
-            <span class="navbar-brand mb-0 h1">
-                <a class="blogTitle" href="index.php?action=showPage&page=1">Billet simple pour l'Alaska</a>
-            </span>
-        </div>
-        <nav class="collapse navbar-collapse head-navbar col-lg-9">
-
-            <ul class="navbar-nav navbar-right mr-auto row">
-                <li class="nav-item active col-lg-6">
-                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                     <a class="nav-link" href="index.php?action=showPage&page=1" id="navHome"><i class="fas fa-home fa-md"></i>  Accueil</a>
-                </li>
-                <li class ="nav-item col-lg-6">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <a class="nav-link" href="index.php?action=connect" id="navConnect">Connexion</a>
-                </li>
-
-            </ul>
-        </nav>
-    </nav>
-    -->
-
     <nav class="navbar navbar-light bg-light row" id="nav">
         <div class="navbar navbar-light bg-light col-lg-3 col-md-4  col-sm-4 col-xs-2">
             <span class="navbar-brand mb-0 h1">
@@ -65,8 +42,21 @@
                      <a class="nav-link" href="index.php?action=showPage&page=1" id="navHome"><i class="fas fa-home fa-md"></i>  Accueil</a>
                 </li>
                 <li class ="nav-item ">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <a class="nav-link" href="index.php?action=connect" id="navConnect">Connexion</a>
+                    <?php 
+                    
+                        if(isset($_SESSION['userLogged'])){ ?>
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <a class="nav-link" href="index.php?action=dashboard" id="navdashboard">Tableau de Bord</a>
+
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <a class="nav-link" href="index.php?action=disconnect" id="navdisconnect">Déconnexion</a>
+                   
+                    <?php } 
+                        else {?>
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <a class="nav-link" href="index.php?action=connect" id="navConnect">Connexion</a>
+                            
+                    <?php } ?>
                 </li>
 
             </ul>
