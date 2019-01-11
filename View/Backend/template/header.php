@@ -33,15 +33,15 @@
             <ul class="row justify-content-end  ">
                 <li class="nav-item active ">
                     
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <a class="nav-link" href="index.php?action=showPage&page=1" id="navHome">
+                    <button type="button" class="btn btn-primary btn-border">
+                    <a class="nav-link btn-text-color" href="index.php?action=showPage&page=1" id="navHome">
                         <i class="fas fa-home fa-md"> </i> Accueil du blog
                     </a>
                 </li>
             
                 <li class ="nav-item ">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <a class="nav-link " href="index.php?action=disconnect" id="navConnect">Déconnexion</a>
+                    <button type="button" class="btn btn-primary btn-border">
+                    <a class="nav-link btn-text-color" href="index.php?action=disconnect" id="navConnect">Déconnexion</a>
                 </li>
             </ul>
         </nav>

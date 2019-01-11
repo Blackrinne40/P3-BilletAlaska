@@ -1,6 +1,6 @@
 <?php
 
-require_once ('./Model/Model.php'); 
+require_once ('./Model/model.php'); 
 
 class PostClass extends Model {
 

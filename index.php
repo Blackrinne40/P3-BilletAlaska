@@ -108,96 +108,117 @@ session_start();
 
             //ADMIN
             case 'dashboard':
-              
+              if(isset($_SESSION['userLogged'])){
                 $postControler->goDashboard();
+              }
+              else { header('Location: index.php?action=connect');}
 
               break;
 
             case 'showAllPostsAdmin':
-              if(isset($_GET['page']))
-              {
-                if(ctype_digit($_GET['page']))
-                  {
-                $postControler->getPostsAdmin(intval($_GET['page']));
-                  }
-              }
-              else
-              {
-                header ('Location: index.php?action=dashboard');
-              }
-              break;
-
-            case 'showAllCommentsAdmin': 
-              if(isset($_GET['page']))
-              {
-                if(ctype_digit($_GET['page']))
-                  {
-                  $commentController->getCommentsAdmin(intval($_GET['page']));
-                }
-              }
-              else
-              {
-                header ('Location: index.php?action=dashboard');
-              }
-              break;
-
-            case 'showAllReportsComments':
-              if(isset($_GET['page']))
+              if(isset($_SESSION['userLogged'])){
+                if(isset($_GET['page']))
                 {
                   if(ctype_digit($_GET['page']))
                     {
-                      $commentController->getReportsComments(intval($_GET['page']));
+                  $postControler->getPostsAdmin(intval($_GET['page']));
                     }
                 }
-               else
+                else
                 {
                   header ('Location: index.php?action=dashboard');
                 }
+              }
+              else { header('Location: index.php?action=connect');}
+              break;
+
+            case 'showAllCommentsAdmin': 
+              if(isset($_SESSION['userLogged'])){ 
+                if(isset($_GET['page']))
+                {
+                  if(ctype_digit($_GET['page']))
+                    {
+                    $commentController->getCommentsAdmin(intval($_GET['page']));
+                  }
+                }
+                else
+                {
+                  header ('Location: index.php?action=dashboard');
+                }
+              }
+              else { header('Location: index.php?action=connect');}
+              break;
+
+            case 'showAllReportsComments':
+              if(isset($_SESSION['userLogged'])){
+                if(isset($_GET['page']))
+                  {
+                    if(ctype_digit($_GET['page']))
+                      {
+                        $commentController->getReportsComments(intval($_GET['page']));
+                      }
+                  }
+                 else
+                  {
+                    header ('Location: index.php?action=dashboard');
+                  }
+              }
+              else { header('Location: index.php?action=connect');}
               break;
 
             case 'deletecomment': 
-              if(isset($_GET['id']))
-              {
-                if(ctype_digit($_GET['id']))
-                    {
-                      $commentController->deleteComment(intval($_GET['id']));
-                    }
-              }
-              else
+              if(isset($_SESSION['userLogged'])){
+                if(isset($_GET['id']))
                 {
-                  header ('Location: index.php?action=showAllCommentsAdmin&page=1');
+                  if(ctype_digit($_GET['id']))
+                      {
+                        $commentController->deleteComment(intval($_GET['id']));
+                      }
                 }
+                else
+                  {
+                    header ('Location: index.php?action=showAllCommentsAdmin&page=1');
+                  }
+              }
+              else { header('Location: index.php?action=connect');}
               break;
 
             case 'deletepost': 
-              if(isset($_GET['id']))
-              {
-                if(ctype_digit($_GET['id']))
-                    {
-                      $postControler->deletePost(intval($_GET['id']));
-                    }
-              }
-              else
+              if(isset($_SESSION['userLogged'])){
+                if(isset($_GET['id']))
                 {
-                  header ('Location: index.php?action=showAllPostsAdmin&page=1');
+                  if(ctype_digit($_GET['id']))
+                      {
+                        $postControler->deletePost(intval($_GET['id']));
+                      }
                 }
+                else
+                  {
+                    header ('Location: index.php?action=showAllPostsAdmin&page=1');
+                  }
+              }
+              else { header('Location: index.php?action=connect');}
               break;
 
             case 'editpost': 
-              if(isset($_GET['id']))
-              {
-                if(ctype_digit($_GET['id']))
-                    {
-                      $postControler->editPost(intval($_GET['id']));
-                    }
-              }
-              else
+              if(isset($_SESSION['userLogged'])){  
+                if(isset($_GET['id']))
                 {
-                  header ('Location: index.php?action=showAllPostsAdmin&page=1');
+                  if(ctype_digit($_GET['id']))
+                      {
+                        $postControler->editPost(intval($_GET['id']));
+                      }
                 }
+                else
+                  {
+                    header ('Location: index.php?action=showAllPostsAdmin&page=1');
+                  }
+              }
+              else { header('Location: index.php?action=connect');}
               break;
 
             case 'savepost':
+              if(isset($_SESSION['userLogged'])){
                 if(array_key_exists('id', $_GET) && isset($_GET['id'])){
                   if (isset($_POST['author']) && !empty($_POST['author'])) {
                     if(isset($_POST['title'])&& !empty($_POST['title'])){
@@ -217,14 +238,19 @@ session_start();
                 {
                   header ('Location: index.php?action=showAllPostsAdmin&page=1');
                 }
+              }
+              else { header('Location: index.php?action=connect');}
               break;
             
             case 'createpost':
+              if(isset($_SESSION['userLogged'])){
                 $postControler->goCreationPost();
-                
+              }
+              else { header('Location: index.php?action=connect');}
               break;
 
             case 'addpost':
+              if(isset($_SESSION['userLogged'])){
                 if (array_key_exists('title', $_POST))
                 {
                   if(isset($_POST['textresum']))
@@ -244,20 +270,25 @@ session_start();
                 {
                   header ('Location: index.php?action=dashboard');
                 }
+              }
+              else { header('Location: index.php?action=connect');}
               break;
 
             case 'approvecomment': 
-              if(isset($_GET['id']))
-              {
-                if(ctype_digit($_GET['id']))
-                    {
-                      $commentController->approveComment(intval($_GET['id']));
-                    }
-              }
-              else
+              if(isset($_SESSION['userLogged'])){ 
+                if(isset($_GET['id']))
                 {
-                  header ('Location: index.php?action=showAllReportsComments&page=1');
+                  if(ctype_digit($_GET['id']))
+                      {
+                        $commentController->approveComment(intval($_GET['id']));
+                      }
                 }
+                else
+                  {
+                    header ('Location: index.php?action=showAllReportsComments&page=1');
+                  }
+              }
+              else { header('Location: index.php?action=connect');}
               break;
 
             case 'connect':

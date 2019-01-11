@@ -38,23 +38,23 @@
 
             <ul class="row justify-content-end col-lg-11 col-md-11 col-sm-11 ">
                 <li class="nav-item active ">
-                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                     <a class="nav-link" href="index.php?action=showPage&page=1" id="navHome"><i class="fas fa-home fa-md"></i>  Accueil</a>
+                     <button type="button" class="btn btn-primary btn-border">
+                     <a class="nav-link btn-text-color" href="index.php?action=showPage&page=1" id="navHome"><i class="fas fa-home fa-md"></i>  Accueil</a>
                 </li>
                 <li class ="nav-item ">
                     <?php 
                     
                         if(isset($_SESSION['userLogged'])){ ?>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <a class="nav-link" href="index.php?action=dashboard" id="navdashboard">Tableau de Bord</a>
+                            <button type="button" class="btn btn-primary btn-border">
+                            <a class="nav-link btn-text-color" href="index.php?action=dashboard" id="navdashboard">Tableau de Bord</a>
 
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <a class="nav-link" href="index.php?action=disconnect" id="navdisconnect">Déconnexion</a>
+                            <button type="button" class="btn btn-primary btn-border">
+                            <a class="nav-link btn-text-color" href="index.php?action=disconnect" id="navdisconnect">Déconnexion</a>
                    
                     <?php } 
                         else {?>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <a class="nav-link" href="index.php?action=connect" id="navConnect">Connexion</a>
+                            <button type="button" class=" btn btn-primary btn-border">
+                            <a class="nav-link btn-text-color" href="index.php?action=connect" id="navConnect">Connexion</a>
                             
                     <?php } ?>
                 </li>

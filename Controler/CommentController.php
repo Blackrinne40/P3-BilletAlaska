@@ -82,13 +82,13 @@ class CommentController
     public function deleteComment($commentId)
     {
         $this->commentManager->deleteComment($commentId);
-        header('Location: index.php?action=showAllCommentsAdmin&page=0');
+        header('Location: index.php?action=showAllCommentsAdmin&page=1');
     }
 
     public function approveComment($commentId)
     {
         $this->commentManager->approveComment($commentId);
-        header('Location: index.php?action=showAllCommentsAdmin&page=0');
+        header('Location: index.php?action=showAllReportsComments&page=1');
     }
 
 }
