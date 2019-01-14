@@ -1,8 +1,7 @@
 <?php ob_start(); ?>
-<!DOCTYPE html>
-<html>
+
 	<div class="container">
-		<img src="Public\Images\homeviewalaska.jpg" alt="homeviewalaska" title="homeviewalaska" class="img-fluid" />
+		<img src="Public/Images/homeviewalaska.jpg" alt="homeviewalaska" title="homeviewalaska" class="img-fluid" />
 	</div>
 
 	<div class="container">
@@ -17,7 +16,7 @@
 					<h3><strong><?=htmlspecialchars($post->getTitle())?></strong></h3>
 					<p class="text-center">Publié par 
 						<span style="color: Tomato;">
-							<i class=" fas fa-pen-square"></i> 
+							<em class=" fas fa-pen-square"></em> 
 						</span><?=htmlspecialchars($post->getAuthor())?>
 					</p>
 					<p class="text-center"><?= $post->getTextResum() ?></p>
@@ -40,6 +39,7 @@
 			</div>
 		</nav>
 		<br/>
+	</div>
 
 <?php $content = ob_get_clean();   
 require_once('template/body.php'); ?>

@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 	<meta charset="utf-8">
 	<title>Billet simple pour l'Alaska - par Jean Forteroche</title>
@@ -39,22 +39,22 @@
             <ul class="row justify-content-end col-lg-11 col-md-11 col-sm-11 ">
                 <li class="nav-item active ">
                      <button type="button" class="btn btn-primary btn-border">
-                     <a class="nav-link btn-text-color" href="index.php?action=showPage&page=1" id="navHome"><i class="fas fa-home fa-md"></i>  Accueil</a>
+                     <a class="nav-link btn-text-color" href="index.php?action=showPage&page=1" id="navHome"><em class="fas fa-home fa-md"></em>  Accueil</a></button>
                 </li>
                 <li class ="nav-item ">
                     <?php 
                     
                         if(isset($_SESSION['userLogged'])){ ?>
                             <button type="button" class="btn btn-primary btn-border">
-                            <a class="nav-link btn-text-color" href="index.php?action=dashboard" id="navdashboard">Tableau de Bord</a>
+                            <a class="nav-link btn-text-color" href="index.php?action=dashboard" id="navdashboard">Tableau de Bord</a></button>
 
                             <button type="button" class="btn btn-primary btn-border">
-                            <a class="nav-link btn-text-color" href="index.php?action=disconnect" id="navdisconnect">Déconnexion</a>
+                            <a class="nav-link btn-text-color" href="index.php?action=disconnect" id="navdisconnect">Déconnexion</a></button>
                    
                     <?php } 
                         else {?>
                             <button type="button" class=" btn btn-primary btn-border">
-                            <a class="nav-link btn-text-color" href="index.php?action=connect" id="navConnect">Connexion</a>
+                            <a class="nav-link btn-text-color" href="index.php?action=connect" id="navConnect">Connexion</a></button>
                             
                     <?php } ?>
                 </li>

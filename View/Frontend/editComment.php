@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 	<title>Modifier mon commentaire</title>
 	<meta charset="utf-8">

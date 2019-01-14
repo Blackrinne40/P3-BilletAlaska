@@ -1,8 +1,4 @@
 <?php ob_start(); ?>
-<!DOCTYPE html>
-<html>
-
-
 	<a class="link-post" href="./index.php?action=showPage&page=1"><i class="fas fa-chevron-left"></i> Retour à la page d'accueil</a>
     <br/>
     <div class="container">
