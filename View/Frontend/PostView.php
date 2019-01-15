@@ -34,32 +34,32 @@
         <hr width="50%"/>
         </div>
         <div class="container">
-           <p>
+           <p class="comment">
             <?php foreach($comments as $comment) {?>
-                <p class="comment">
                     <span class="commenttitle">Commentaire:</span> 
                     <button type="submit" class="btn btn-info">
                         <a class="nodecorationlink" href=<?= "index.php?action=editComment&id=".$comment->getId() ?>>
-                            <i class="fas fa-edit"></i>
+                            <span class="fas fa-edit"></span>
                             <span class="infobulle">(modifier)</span>
                         </a>
                     </button>
                     <button type="submit" class="btn btn-info">
                         <a class="nodecorationlink " href=<?= "index.php?action=reportComment&id=".$comment->getId() ?>> 
-                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="fas fa-exclamation-circle"></span>
                             <span class="infobulle">Signaler ce commentaire</span>
                         </a>
                     </button>
                     <br/>
                     Signalements : <span class="badge badge-primary badge-pill"><?php echo($comment-> getReports())?></span><br/>
                     
-                    <i>Auteur : <?= $comment->getAuthor(); ?></i><br/>
-                    <i >Message : <?= $comment->getComment(); ?></i><br/>
+                    Auteur : <?= $comment->getAuthor(); ?><br/>
+                    Message : <?= $comment->getComment(); ?>
+            
                     <hr width="40%"/>  
 
-                </p>
+            
             <?php } ?>
-
+            </p>
 
             <nav aria-label="Navigation Home View">
                 <div class="pagination">
