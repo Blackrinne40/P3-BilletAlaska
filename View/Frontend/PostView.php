@@ -20,7 +20,7 @@
        <div class="container">
         <h4>Ajouter un commentaire: </h4>
         <!-- Ajout de formulaire pour l'ajout de commentaire-->
-        <form method="post" action=<?='index.php?action=addComment&id=' .$post->getId()?> >
+        <form method="post" action=<?="index.php?action=addComment&id=" .$post->getId()?> >
             <div class="form-group">
                 <label for='author'>Auteur </label>
                 <input type="text" name="author" id="author" class="form-control" /><br/>
@@ -36,25 +36,41 @@
         <div class="container">
            <p class="comment">
             <?php foreach($comments as $comment) {?>
-                    <span class="commenttitle">Commentaire:</span> 
-                    <button type="submit" class="btn btn-info">
-                        <a class="nodecorationlink" href=<?= "index.php?action=editComment&id=".$comment->getId() ?>>
-                            <span class="fas fa-edit"></span>
-                            <span class="infobulle">(modifier)</span>
-                        </a>
-                    </button>
-                    <button type="submit" class="btn btn-info">
-                        <a class="nodecorationlink " href=<?= "index.php?action=reportComment&id=".$comment->getId() ?>> 
-                            <span class="fas fa-exclamation-circle"></span>
-                            <span class="infobulle">Signaler ce commentaire</span>
-                        </a>
-                    </button>
-                    <br/>
-                    Signalements : <span class="badge badge-primary badge-pill"><?php echo($comment-> getReports())?></span><br/>
+                <table class="container table table-bordered">
+                        <tbody>
+                            <tr class="table">
+                                <td class="commenttitle">Commentaire :</td>
+                                <td>
+                                    <a class="nodecorationlink btn btn-info" href=<?= "index.php?action=editComment&id=".$comment->getId() ?>>
+                                    <span class="fas fa-edit"></span>
+                                    <span class="infobulle">(modifier)</span>
+                                    </a>
+                                    <a class="nodecorationlink btn btn-info" href=<?= "index.php?action=reportComment&id=".$comment->getId() ?>> 
+                                    <span class="fas fa-exclamation-circle"></span>
+                                    <span class="infobulle">Signaler ce commentaire</span>
+                                    </a>
+                                </td>
+                            </tr>        
+                            <tr>
+                                <td>Signalements </td>
+                                <td><span class="badge badge-primary badge-pill"><?php echo($comment-> getReports())?></span> </td>
+                            </tr>
+                            <tr>
+                                <td>Auteur</td>
+                                <td><?= htmlspecialchars_decode($comment->getAuthor()) ?></td>
+                            </tr>
+                            <tr>
+                                <td>Message</td>
+                                <td><?= htmlspecialchars_decode($comment->getComment()) ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!--<span>Signalements :</span> <span class="badge badge-primary badge-pill"><?php echo($comment-> getReports())?></span><br/>
                     
-                    Auteur : <?= $comment->getAuthor(); ?><br/>
-                    Message : <?= $comment->getComment(); ?>
-            
+                    <span>Auteur : </span><span><?= htmlspecialchars_decode($comment->getAuthor()) ?></span><br/>
+                    <span>Message : </span><span><?= htmlspecialchars_decode($comment->getComment()) ?></span>
+                    -->
                     <hr width="40%"/>  
 
             

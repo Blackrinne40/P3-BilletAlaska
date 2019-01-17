@@ -16,6 +16,7 @@
 }
 ul li{
   list-style: none;
+
 }
 img {
   max-height: 600px;
@@ -119,7 +120,7 @@ a:hover span.infobulle, a:focus span.infobulle{
   color: white;
 }
 .row {
-  margin: 0, 0, 0 ,0;
+  margin: 0;
 }
 .btn-border {
   border-color: white;
@@ -128,40 +129,3 @@ img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost
 display : none;
 }
 
-/*@media screen and handheld and (max-width: 800px)
-  @media all and (max-width: 400px)
-{
-    .navsize{
-    width: auto;
-  }
-}
-  /*.head-navbar{
-  width: auto;
-  text-align: left;
-  }
-  nav
-    {
-        width: auto;
-        text-align: left;
-    }
-    
-    nav ul
-    {
-        flex-direction: column;
-    }
-
-    nav li
-    {
-        padding-left: 4px;
-    }
-    
-    nav a
-    {
-        font-size: 1.1em;
-    }
-    
-    nav a:hover
-    {
-        border-bottom: 0;
-    }
-}

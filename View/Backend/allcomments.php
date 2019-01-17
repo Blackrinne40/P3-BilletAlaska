@@ -15,7 +15,7 @@
 		<?php foreach($comments as $comment) {?>
 			<tr class="table text-center">
 				<td><strong><?=htmlspecialchars($comment->getAuthor())?></strong></td>
-				<td><p><?=htmlspecialchars($comment->getComment())?></p></td>
+				<td><p><?=htmlspecialchars_decode($comment->getComment())?></p></td>
 				<td><p><?=htmlspecialchars($comment->getComment_date())?></p></td>
 				<td>
 					<a href=<?="index.php?action=deletecomment&id=".$comment->getId()?>> 
